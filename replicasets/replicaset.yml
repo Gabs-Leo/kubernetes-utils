@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: replicaset-example
+spec:
+  template: 
+    metadata:
+      name: ubuntu
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - image: ubuntu
+        command:
+          - "sleep"
+          - "infinity"
+        imagePullPolicy: IfNotPresent
+        name: ubuntu
+      restartPolicy: Always
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ubuntu
